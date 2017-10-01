@@ -1,13 +1,13 @@
 <html>
 <head>
 <link rel=stylesheet href=style.css>
-<title>Mad Libs!</title>
+<title>Mad Libs</title>
 </head>
 <body>
     <div id=container>
-        <h1 id=title>Your Epic Adventure!</h1>
+        <h1 id=title>Mad Libs!</h1>
         <div id=story>
-            <h2>Let's write a 'random' story! Press launch & enter words into the prompts to create your own epic adventure!</h2>
+            <h2>Let's write a 'random' story! Mad Libs is a word game that prompts a player for a list of words to substitute for blanks in a customized story. Press 'Launch', enter your username, and begin entering words into the prompts to craft an epic adventure! What will you come up with?</h2>
             <button id=launch onclick=madLibs()>Launch!</button>
         </div>
     </div>
@@ -16,7 +16,7 @@
 
 function madLibs(){
 
-    // Create parts-of-speech prompts
+    // Array with parts-of-speech prompts
     var speech = [
         'Enter a noun (e.g. dog)',
         'Enter a pronoun (e.g. she)',
@@ -45,7 +45,7 @@ function madLibs(){
     for (var round = 1; round > 0; round++) {
         
         var types = Math.floor(Math.random() * 8);  // Randomize prompt
-        word = window.prompt(speech[types]);        // Prompt user according to random input type
+        word = window.prompt(`(${round}) ` + speech[types]);        // Prompt user according to random input type
 
         if (word === null) {                    // If user presses 'Cancel', break loop
             break;
@@ -80,9 +80,9 @@ function madLibs(){
     // Output results and explanations for story
     var results = (`
         <h2>LOL! The jokes on you! The real story is...</h2>
-        <p>"There once was a person named ${name}. ${summary}"<br>&nbsp;</p>
+        <p>"There once was a person named ${name}. ${summary}"</p>
         <h2>What just happened?</h2>
-        <p>You were tricked into a randomized, infinite loop of prompts!<br>&nbsp;</p>
+        <p>You were tricked into a randomized, infinite loop of prompts!</p>
         <h2>You 'scored' ${round-1} words!</h2>
         <p>${name}, here are your results:</p>
         <ul><li>Nouns (${logs[0].length}):${logs[0]}</li>
@@ -93,10 +93,11 @@ function madLibs(){
             <li>Prepositions (${logs[5].length}):${logs[5]}</li>
             <li>Conjunctions (${logs[6].length}):${logs[6]}</li>
             <li>Interjections (${logs[7].length}):${logs[7]}</li></ul>
-        <p>Share this with a friend & see how long they last!</p>
+        <h2>Share this with a friend & see how long they last!</h2>
     `)
     document.getElementById('title').innerHTML = '<h1>JUST KIDDING!</h1>';
     document.getElementById('story').innerHTML = results;
+    console.log(logs);
     
 }
 
